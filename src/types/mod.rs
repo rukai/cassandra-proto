@@ -472,6 +472,12 @@ pub struct CStringList {
 }
 
 impl CStringList {
+    pub fn new(list: &[String]) -> Self {
+        CStringList {
+            list: list.iter().map(|x| CString::new(x.clone())).collect()
+        }
+    }
+
     pub fn into_plain(self) -> Vec<String> {
         self.list
             .iter()
